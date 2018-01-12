@@ -34,7 +34,7 @@
 *.patch
 *.gcno
 *.ll
-*.bc
+*.llbc
 modules.builtin
 Module.symvers
 *.dwo
