@@ -1010,8 +1010,7 @@ extern void sched_ttwu_pending(void);
  * preempt-disabled sections.
  */
 #define for_each_domain(cpu, __sd) \
-	struct rq *__rq = cpu_rq(cpu); \
-	for (__sd = rcu_dereference_check_sched_domain(__rq->sd); \
+	for (__sd = rcu_dereference_check_sched_domain(cpu_rq(cpu)->sd); \
 			__sd; __sd = __sd->parent)
 
 #define for_each_lower_domain(sd) for (; sd; sd = sd->child)
