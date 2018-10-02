@@ -5429,9 +5429,9 @@ static void wq_watchdog_timer_fn(unsigned long data)
 			ts = touched;
 
 		if (pool->cpu >= 0) {
-			unsigned long cpu_touched =
-				READ_ONCE(per_cpu(wq_watchdog_touched_cpu,
-						  pool->cpu));
+            unsigned long *__cpu_touched_ptr =
+				per_cpu_ptr(&wq_watchdog_touched_cpu, pool->cpu);
+			unsigned long cpu_touched = READ_ONCE(*__cpu_touched_ptr);
 			if (time_after(cpu_touched, ts))
 				ts = cpu_touched;
 		}
